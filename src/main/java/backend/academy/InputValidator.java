@@ -51,7 +51,7 @@ public class InputValidator {
                 int row = scanner.nextInt();
                 int col = scanner.nextInt();
                 if (row >= 0 && row < height && col >= 0 && col < width) {
-                    return new Coordinate(row, col); 
+                    return new Coordinate(row, col);
                 } else {
                     out.println("Некорректные координаты точки " + pointName2 + ".");
                 }
@@ -61,6 +61,24 @@ public class InputValidator {
                 scanner.next();
             }
             scanner.nextLine();
+        }
+    }
+
+    public static int validateAlgoritmGeneratorChoice(Scanner scanner, PrintStream out) {
+        int choice;
+        while (true) {
+            out.println("Выберите алгоритм для создания лабиринта\n1. Идеальный алгоритм\n2. Алгоритм Крускала");
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (AlgoritmsGenerator.KRUSKAL.getValue() == choice || AlgoritmsGenerator.IDEAL.getValue() == choice) {
+                    return choice;
+                } else {
+                    out.println("Некорректный выбор. Пожалуйста, выберите 1 или 2.");
+                }
+            } else {
+                out.println("Некорректный ввод. Пожалуйста, введите целое число.");
+                scanner.next();
+            }
         }
     }
 }
