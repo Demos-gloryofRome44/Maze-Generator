@@ -46,4 +46,15 @@ public class Maze {
     public Cell[][] getGrid() {
         return grid;
     }
+
+    public void setCell(int row, int col, Cell.Type type) {
+        grid[row][col].setType(type);
+    }
+
+    public Cell getCell(int row, int col) {
+        if (row < 0 || row >= height || col < 0 || col >= width) {
+            throw new IndexOutOfBoundsException("Coordinates are outside the maze bounds.");
+        }
+        return grid[row][col];
+    }
 }
