@@ -29,4 +29,11 @@ public class IdealGenerator {
 
         return maze;
     }
+
+    private void addWalls(Maze maze, List<Cell> walls, int row, int col) {
+        if (row > 0) walls.add(new Cell(row - 1, col, Cell.Type.WALL));
+        if (row < maze.getHeight() - 1) walls.add(new Cell(row + 1, col, Cell.Type.WALL));
+        if (col > 0) walls.add(new Cell(row, col - 1, Cell.Type.WALL));
+        if (col < maze.getWidth() - 1) walls.add(new Cell(row, col + 1, Cell.Type.WALL));
+    }
 }
