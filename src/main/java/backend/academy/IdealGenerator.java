@@ -36,4 +36,19 @@ public class IdealGenerator {
         if (col > 0) walls.add(new Cell(row, col - 1, Cell.Type.WALL));
         if (col < maze.getWidth() - 1) walls.add(new Cell(row, col + 1, Cell.Type.WALL));
     }
+
+    private boolean isWallValid(Maze maze, Cell wall) {
+        int passageCount = 0;
+
+        if (wall.getRow() > 0 && maze.getGrid()[wall.getRow() - 1][wall.getCol()].getType() == Cell.Type.PASSAGE)
+            passageCount++;
+        if (wall.getRow() < maze.getHeight() - 1 && maze.getGrid()[wall.getRow() + 1][wall.getCol()].getType() == Cell.Type.PASSAGE)
+            passageCount++;
+        if (wall.getCol() > 0 && maze.getGrid()[wall.getRow()][wall.getCol() - 1].getType() == Cell.Type.PASSAGE)
+            passageCount++;
+        if (wall.getCol() < maze.getWidth() - 1 && maze.getGrid()[wall.getRow()][wall.getCol() + 1].getType() == Cell.Type.PASSAGE)
+            passageCount++;
+
+        return passageCount == 1;
+    }
 }
