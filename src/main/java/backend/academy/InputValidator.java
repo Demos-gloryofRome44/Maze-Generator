@@ -25,4 +25,22 @@ public class InputValidator {
             }
         }
     }
+
+    public static int validateWidth(Scanner scanner, PrintStream out) {
+        int width;
+        while (true) {
+            out.print("Введите ширину лабиринта (макс. 170; мин. 5): ");
+            if (scanner.hasNextInt()) {
+                width = scanner.nextInt();
+                if (width >= heightWeight && width <= maxWidth) {
+                    return width; // Ввод корректен
+                } else {
+                    out.println("Некорректное значение. Пожалуйста, введите число от 1 до 170.");
+                }
+            } else {
+                out.println("Некорректный ввод. Пожалуйста, введите целое число.");
+                scanner.next(); // Сбрасываем некорректный ввод
+            }
+        }
+    }
 }
