@@ -17,8 +17,9 @@ public class BFSSolver implements Solver {
             throw new IllegalArgumentException("Maze, start, and end cannot be null.");
         }
 
-        start = checkAndModifyCellType(maze, start, "A");
-        end = checkAndModifyCellType(maze, end, "B");
+        WallHandler wallHandler = new WallHandler(maze);
+        start = wallHandler.checkAndModifyCellType(start, "A");
+        end = wallHandler.checkAndModifyCellType(end, "B");
 
         Queue<Coordinate> queue = new LinkedList<>();
         Map<Coordinate, Coordinate> prev = new HashMap<>();
@@ -45,30 +46,6 @@ public class BFSSolver implements Solver {
         }
 
         return Collections.emptyList();
-    }
-
-    private Coordinate checkAndModifyCellType(Maze maze, Coordinate coord, String pointLabel) {
-        while (maze.getCell(coord.row(), coord.col()).getType() != Cell.Type.PASSAGE) {
-            System.out.printf("Вы выбрали за точку %s стену. Вы хотите сделать её проходом? Да/Нет?", pointLabel);
-            Scanner scanner = new Scanner(System.in);
-            String response = scanner.nextLine();
-
-            if (response.equalsIgnoreCase("Д")) {
-                maze.getCell(coord.row(), coord.col()).setType(Cell.Type.PASSAGE);
-                break;
-            } else {
-                coord = getUserInputCoordinate(String.format("Введите новые координаты для точки %s (row col): ", pointLabel));
-            }
-        }
-        return coord;
-    }
-
-    private Coordinate getUserInputCoordinate(String prompt) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print(prompt);
-        int row = scanner.nextInt();
-        int col = scanner.nextInt();
-        return new Coordinate(row, col);
     }
 
     private List<Coordinate> getNeighbors(Maze maze, Coordinate coord) {
