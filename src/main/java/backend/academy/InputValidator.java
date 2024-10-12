@@ -43,4 +43,24 @@ public class InputValidator {
             }
         }
     }
+
+    public static Coordinate validateCoordinate(Scanner scanner, int height, int width, String pointName, String pointName2, PrintStream out) {
+        while (true) {
+            out.print("Введите " + pointName + " точку " + pointName2 + " (row column): ");
+            if (scanner.hasNextInt()) {
+                int row = scanner.nextInt();
+                int col = scanner.nextInt();
+                if (row >= 0 && row < height && col >= 0 && col < width) {
+                    return new Coordinate(row, col); 
+                } else {
+                    out.println("Некорректные координаты точки " + pointName2 + ".");
+                }
+            }
+            else {
+                out.println("Некорректный ввод! Координаты должны быть целыми числами.");
+                scanner.next();
+            }
+            scanner.nextLine();
+        }
+    }
 }
