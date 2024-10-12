@@ -81,4 +81,22 @@ public class InputValidator {
             }
         }
     }
+
+    public static int validateSolverChoice(Scanner scanner, PrintStream out) {
+        int choice;
+        while (true) {
+            out.println("Выберите алгоритм поиска пути\n1. BFS\n2. DFS");
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (AlgoritmsSolver.BFS.getValue() == choice  || AlgoritmsSolver.DFS.getValue() == choice) {
+                    return choice;
+                } else {
+                    out.println("Некорректный выбор. Пожалуйста, выберите 1 или 2.");
+                }
+            } else {
+                out.println("Некорректный ввод. Пожалуйста, введите целое число.");
+                scanner.next();
+            }
+        }
+    }
 }
