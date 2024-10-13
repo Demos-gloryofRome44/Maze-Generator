@@ -38,16 +38,16 @@ public class InputValidator {
         int width;
         while (true) {
             out.print("Введите ширину лабиринта (макс. 170; мин. 5): ");
-            if (scanner.hasNextInt()) {
-                width = scanner.nextInt();
+            String input = scanner.nextLine().trim();
+            try {
+                width = Integer.parseInt(input);
                 if (width >= HEIGHTWEIGHT && width <= MAXWIDTH) {
-                    return width; // Ввод корректен
+                    return width;
                 } else {
                     out.println("Некорректное значение. Пожалуйста, введите число от 5 до 170.");
                 }
-            } else {
+            } catch (NumberFormatException e) {
                 out.println(ERRORMESSAGEINT);
-                scanner.next();
             }
         }
     }
