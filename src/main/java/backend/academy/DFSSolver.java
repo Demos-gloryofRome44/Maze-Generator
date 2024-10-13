@@ -9,15 +9,11 @@ import java.util.List;
 public class DFSSolver implements Solver {
 
     @Override
-    public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
+    public List<Coordinate> solve(Maze maze, Coordinate newStart, Coordinate newEnd) {
 
-        if (maze == null || start == null || end == null) {
+        if (maze == null || newStart == null || newEnd == null) {
             throw new IllegalArgumentException("Maze, start, and end cannot be null.");
         }
-
-        WallHandler wallHandler = new WallHandler(maze);
-        Coordinate newStart = wallHandler.checkAndModifyCellType(start, "A");
-        Coordinate newEnd = wallHandler.checkAndModifyCellType(end, "B");
 
         Deque<Coordinate> stack = new ArrayDeque<>();
         List<Coordinate> path = new ArrayList<>();

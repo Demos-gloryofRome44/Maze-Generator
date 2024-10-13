@@ -43,12 +43,15 @@ public class Main {
         ConsoleRenderer renderer = new ConsoleRenderer();
         System.out.println(renderer.render(maze));
 
+        WallHandler wallHandler = new WallHandler(maze);
+
         Coordinate startPoint = InputValidator.validateCoordinate(scanner, height, width,
             "начальную", "A", System.out);
-
+        startPoint = wallHandler.checkAndModifyCellType(startPoint, "A");
 
         Coordinate endPoint = InputValidator.validateCoordinate(scanner, height, width,
             "конечную", "B", System.out);
+        endPoint = wallHandler.checkAndModifyCellType(endPoint, "B");
 
 
         int choiceSolver = InputValidator.validateSolverChoice(scanner, System.out);
