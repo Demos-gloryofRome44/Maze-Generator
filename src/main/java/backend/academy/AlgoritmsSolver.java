@@ -1,10 +1,11 @@
 package backend.academy;
 
 public enum AlgoritmsSolver {
-    BFS(1) ,
+    BFS(1),
     DFS(2);
 
     private final int value;
+
     AlgoritmsSolver(int value) {
         this.value = value;
     }

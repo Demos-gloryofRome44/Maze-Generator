@@ -33,7 +33,7 @@ public class ConsoleRenderer {
             }
         }
 
-        for (int row = maze.getHeight() - 1; row >= 0; row--) { 
+        for (int row = maze.getHeight() - 1; row >= 0; row--) {
             sb.append(new String(visualMaze[row])).append("\n");
         }
 
