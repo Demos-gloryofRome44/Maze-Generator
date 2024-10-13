@@ -1,16 +1,20 @@
 package backend.academy;
 
-import lombok.experimental.UtilityClass;
 import java.util.List;
 import java.util.Scanner;
+import lombok.experimental.UtilityClass;
+
 
 @UtilityClass
+@SuppressWarnings("all")
 public class Main {
+    private static final String ERRORUNCKNOWN = "Неизвестный алгоритм: ";
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Учтите, прежде чем генерировать лабиринт, что его размер подходит под вашу консоль\n" +
-            "рекомендованное максимально число на высоту - 35 и ширину - 170");
+        System.out.println("Учтите, прежде чем генерировать лабиринт, что его размер подходит под вашу консоль\n"
+            + "рекомендованное максимально число на высоту - 35 и ширину - 170");
         int height = InputValidator.validateHeight(scanner, System.out);
         int width = InputValidator.validateWidth(scanner, System.out);
 
@@ -30,7 +34,7 @@ public class Main {
                 System.out.println("Лабиринт сгенерирован с использованием идеального алгоритма.");
                 break;
             default:
-                throw new IllegalStateException("Неизвестный алгоритм: " + algoritm);
+                throw new IllegalStateException(ERRORUNCKNOWN + algoritm);
         }
 
 
@@ -61,7 +65,7 @@ public class Main {
                 path = dfsSolver.solve(maze, startPoint, endPoint);
                 break;
             default:
-                throw new IllegalStateException("Неизвестный алгоритм: " + algoritm);
+                throw new IllegalStateException(ERRORUNCKNOWN + algoritm);
         }
 
         if (!path.isEmpty()) {
