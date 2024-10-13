@@ -15,7 +15,11 @@ public class WallHandler {
     @SuppressWarnings("all")
     public Coordinate checkAndModifyCellType(Coordinate coordinate, String pointLabel) {
         Coordinate coord = coordinate;
-        while (maze.getCell(coord.row(), coord.col()).getType() != Cell.Type.PASSAGE) {
+
+        while (true) {
+            if (maze.getCell(coord.row(), coord.col()).getType() == Cell.Type.PASSAGE) {
+                break;
+            }
             System.out.printf("Вы выбрали за точку %s стену. Вы хотите сделать её проходом? Да/Нет? ", pointLabel);
             String response = scanner.nextLine();
 
@@ -23,17 +27,19 @@ public class WallHandler {
                 maze.getCell(coord.row(), coord.col()).setType(Cell.Type.PASSAGE);
                 break;
             } else {
-                coord = getUserInputCoordinate(String.format("Введите новые координаты для точки %s (row col): ",
-                    pointLabel), System.out);
+                while (true) {
+                    coord = InputValidator.validateCoordinate(scanner, maze.getHeight(), maze.getWidth(),
+                        pointLabel.equals("A") ? "начальную" : "конечную", pointLabel, System.out);
+
+                    if (maze.getCell(coord.row(), coord.col()).getType() == Cell.Type.WALL) {
+                        System.out.printf("Вы выбрали за точку %s стену. Пожалуйста, выберите другую координату.\n", pointLabel);
+                    } else {
+                        return coord;
+                    }
+                }
+
             }
         }
         return coord;
-    }
-
-    private Coordinate getUserInputCoordinate(String prompt, PrintStream out) {
-        out.print(prompt);
-        int row = scanner.nextInt();
-        int col = scanner.nextInt();
-        return new Coordinate(row, col);
     }
 }

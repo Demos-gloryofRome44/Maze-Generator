@@ -57,14 +57,18 @@ public class InputValidator {
             out.print("Введите " + pointName + " точку " + pointName2 + " (row column): ");
             if (scanner.hasNextInt()) {
                 int row = scanner.nextInt();
-                int col = scanner.nextInt();
-                if (row >= 0 && row < height && col >= 0 && col < width) {
-                    return new Coordinate(row, col);
+                if (scanner.hasNextInt()) {
+                    int col = scanner.nextInt();
+                    if (row >= 0 && row < height && col >= 0 && col < width) {
+                        return new Coordinate(row, col);
+                    } else {
+                        out.println("Некорректные координаты точки " + pointName2 + ".");
+                    }
                 } else {
-                    out.println("Некорректные координаты точки " + pointName2 + ".");
+                    out.println("Некорректный ввод! Координата Col(столбец) должна быть целым числом.");
                 }
             } else {
-                out.println("Некорректный ввод! Координаты должны быть целыми числами.");
+                out.println("Некорректный ввод! Координата Row(ряд) должна быть целым числом.");
                 scanner.next();
             }
             scanner.nextLine();
