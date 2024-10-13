@@ -1,12 +1,12 @@
 package backend.academy;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 
 public class DFSSolver implements Solver {
-
 
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
@@ -16,19 +16,19 @@ public class DFSSolver implements Solver {
         }
 
         WallHandler wallHandler = new WallHandler(maze);
-        start = wallHandler.checkAndModifyCellType(start, "A");
-        end = wallHandler.checkAndModifyCellType(end, "B");
+        Coordinate newStart = wallHandler.checkAndModifyCellType(start, "A");
+        Coordinate newEnd = wallHandler.checkAndModifyCellType(end, "B");
 
-        Stack<Coordinate> stack = new Stack<>();
+        Deque<Coordinate> stack = new ArrayDeque<>();
         List<Coordinate> path = new ArrayList<>();
         boolean[][] visited = new boolean[maze.getHeight()][maze.getWidth()];
 
-        stack.push(start);
+        stack.push(newStart);
 
         while (!stack.isEmpty()) {
             Coordinate current = stack.pop();
 
-            if (current.equals(end)) {
+            if (current.equals(newEnd)) {
                 path.add(current);
                 return path;
             }

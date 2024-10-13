@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Scanner;
 
 public class BFSSolver implements Solver {
 
@@ -18,21 +17,21 @@ public class BFSSolver implements Solver {
         }
 
         WallHandler wallHandler = new WallHandler(maze);
-        start = wallHandler.checkAndModifyCellType(start, "A");
-        end = wallHandler.checkAndModifyCellType(end, "B");
+        Coordinate newStart = wallHandler.checkAndModifyCellType(start, "A");
+        Coordinate newEnd = wallHandler.checkAndModifyCellType(end, "B");
 
         Queue<Coordinate> queue = new LinkedList<>();
         Map<Coordinate, Coordinate> prev = new HashMap<>();
         boolean[][] visited = new boolean[maze.getHeight()][maze.getWidth()];
 
-        queue.offer(start);
-        visited[start.row()][start.col()] = true;
+        queue.offer(newStart);
+        visited[newStart.row()][newStart.col()] = true;
 
         while (!queue.isEmpty()) {
             Coordinate current = queue.poll();
 
-            if (current.equals(end)) {
-                return buildPath(prev, end);
+            if (current.equals(newEnd)) {
+                return buildPath(prev, newEnd);
             }
 
             List<Coordinate> neighbors = getNeighbors(maze, current);
@@ -61,7 +60,6 @@ public class BFSSolver implements Solver {
                 neighbors.add(new Coordinate(newRow, newCol));
             }
         }
-
         return neighbors;
     }
 
