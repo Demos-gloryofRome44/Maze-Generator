@@ -37,8 +37,6 @@ public class Main {
                 throw new IllegalStateException(ERRORUNCKNOWN + algoritm);
         }
 
-
-
         System.out.println("Сгенерированный лабиринт:");
         ConsoleRenderer renderer = new ConsoleRenderer();
         System.out.println(renderer.render(maze));

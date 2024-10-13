@@ -1,6 +1,5 @@
 package backend.academy;
 
-import java.io.PrintStream;
 import java.util.Scanner;
 
 public class WallHandler {
@@ -20,7 +19,7 @@ public class WallHandler {
             if (maze.getCell(coord.row(), coord.col()).getType() == Cell.Type.PASSAGE) {
                 break;
             }
-            System.out.printf("Вы выбрали за точку %s стену. Вы хотите сделать её проходом? Да/Нет? ", pointLabel);
+            System.out.printf("Вы выбрали за точку %s стену. Вы хотите сделать её проходом? [Д]а/[Н]ет? ", pointLabel);
             String response = scanner.nextLine();
 
             if (response.equalsIgnoreCase("Д")) {
@@ -37,7 +36,6 @@ public class WallHandler {
                         return coord;
                     }
                 }
-
             }
         }
         return coord;

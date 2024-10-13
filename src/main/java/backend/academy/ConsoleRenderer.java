@@ -7,7 +7,7 @@ public class ConsoleRenderer {
         StringBuilder sb = new StringBuilder();
         for (int row = maze.getHeight() - 1; row >= 0; row--) {
             for (int col = 0; col < maze.getWidth(); col++) {
-                sb.append(maze.getGrid()[row][col].getType() == Cell.Type.WALL ? "█" : " ");
+                sb.append(maze.getGrid()[row][col].getType() == Cell.Type.WALL ? '█' : ' ');
             }
             sb.append("\n");
         }
