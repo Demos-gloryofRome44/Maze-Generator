@@ -19,16 +19,17 @@ public class InputValidator {
         int height;
         while (true) {
             out.print("Введите высоту лабиринта (макс. 35; мин. 5): ");
-            if (scanner.hasNextInt()) {
-                height = scanner.nextInt();
+            String input = scanner.nextLine().trim();
+
+            try {
+                height = Integer.parseInt(input);
                 if (height >= HEIGHTWEIGHT && height <= MAXHEIGHT) {
                     return height;
                 } else {
-                    out.println("Некорректное значение. Пожалуйста, введите число от 1 до 35.");
+                    out.println("Некорректное значение. Пожалуйста, введите число от 5 до 35.");
                 }
-            } else {
+            } catch (NumberFormatException e) {
                 out.println(ERRORMESSAGEINT);
-                scanner.next();
             }
         }
     }
@@ -42,7 +43,7 @@ public class InputValidator {
                 if (width >= HEIGHTWEIGHT && width <= MAXWIDTH) {
                     return width; // Ввод корректен
                 } else {
-                    out.println("Некорректное значение. Пожалуйста, введите число от 1 до 170.");
+                    out.println("Некорректное значение. Пожалуйста, введите число от 5 до 170.");
                 }
             } else {
                 out.println(ERRORMESSAGEINT);
