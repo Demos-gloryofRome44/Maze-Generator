@@ -10,7 +10,6 @@ public class DFSSolver implements Solver {
 
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate newStart, Coordinate newEnd) {
-
         if (maze == null || newStart == null || newEnd == null) {
             throw new IllegalArgumentException("Maze, start, and end cannot be null.");
         }
@@ -40,7 +39,6 @@ public class DFSSolver implements Solver {
                 }
             }
         }
-
         return Collections.emptyList();
     }
 
@@ -57,7 +55,6 @@ public class DFSSolver implements Solver {
                 neighbors.add(new Coordinate(newRow, newCol));
             }
         }
-
         return neighbors;
     }
 }
