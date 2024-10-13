@@ -30,7 +30,7 @@ public class BFSSolver implements Solver {
                 return buildPath(prev, newEnd);
             }
 
-            List<Coordinate> neighbors = getNeighbors(maze, current);
+            List<Coordinate> neighbors = UtiliteSolver.getNeighbors(maze, current);
             for (Coordinate neighbor : neighbors) {
                 if (!visited[neighbor.row()][neighbor.col()]) {
                     queue.offer(neighbor);
@@ -41,22 +41,6 @@ public class BFSSolver implements Solver {
         }
 
         return Collections.emptyList();
-    }
-
-    private List<Coordinate> getNeighbors(Maze maze, Coordinate coord) {
-        List<Coordinate> neighbors = new ArrayList<>();
-        int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
-
-        for (int[] dir : directions) {
-            int newRow = coord.row() + dir[0];
-            int newCol = coord.col() + dir[1];
-
-            if (newRow >= 0 && newRow < maze.getHeight() && newCol >= 0 && newCol < maze.getWidth()
-                && maze.getCell(newRow, newCol).getType() == Cell.Type.PASSAGE) {
-                neighbors.add(new Coordinate(newRow, newCol));
-            }
-        }
-        return neighbors;
     }
 
     private List<Coordinate> buildPath(Map<Coordinate, Coordinate> prev, Coordinate end) {
