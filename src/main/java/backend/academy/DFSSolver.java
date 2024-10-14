@@ -8,6 +8,16 @@ import java.util.List;
 
 public class DFSSolver implements Solver {
 
+    /**
+        * Решает задачу нахождения пути в лабиринте от заданной начальной точки до конечной.
+        *
+        * @param maze      Лабиринт, в котором необходимо найти путь.
+        * @param newStart  Координаты начальной точки.
+        * @param newEnd    Координаты конечной точки.
+        * @return Список координат, представляющих путь от начальной точки до конечной,
+     *         или пустой список, если путь не найден.
+        * @throws IllegalArgumentException Если лабиринт, начальная или конечная точка равны null.
+        */
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate newStart, Coordinate newEnd) {
         if (maze == null || newStart == null || newEnd == null) {

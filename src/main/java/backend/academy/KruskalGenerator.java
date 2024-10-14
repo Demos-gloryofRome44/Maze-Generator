@@ -10,13 +10,15 @@ import java.util.Random;
 public class KruskalGenerator implements Generator {
     private final Random random = new Random();
 
+    /**
+     * Генерирует лабиринт заданных размеров.
+     *
+     * @param height Высота лабиринта.
+     * @param width  Ширина лабиринта.
+     * @return       Сгенерированный лабиринт.
+     */
     @Override
     public Maze generate(int height, int width) throws IllegalArgumentException {
-
-        if (height <= 0 || width <= 0) {
-            throw new IllegalArgumentException("Dimensions must be positive");
-        }
-
         UnionFind unionFind = new UnionFind(width, height);
         Cell[][] cells = new Cell[height][width];
         List<Wall> walls = new ArrayList<>();
@@ -69,6 +71,9 @@ public class KruskalGenerator implements Generator {
         return new Maze(cells);
     }
 
+    /**
+     * Класс для представления стены между двумя клетками.
+     */
     private static class Wall {
         public Coordinate cell1;
         public Coordinate cell2;
@@ -79,6 +84,9 @@ public class KruskalGenerator implements Generator {
         }
     }
 
+    /**
+     * Класс для реализации структуры "Система непересекающихся множеств" (Union-Find).
+     */
     private static class UnionFind {
         private final Map<Coordinate, Coordinate> parent = new HashMap<>();
 
