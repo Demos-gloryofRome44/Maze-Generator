@@ -22,15 +22,16 @@ public class Main {
         AlgoritmsGenerator algoritm = AlgoritmsGenerator.fromValue(choiceGenerator);
 
         Maze maze;
+        Generator generator;
         switch (algoritm) {
             case KRUSKAL:
-                KruskalGenerator generator = new KruskalGenerator();
+                generator = new KruskalGenerator();
                 maze = generator.generate(height, width);
                 System.out.println("Лабиринт сгенерирован с использованием алгоритма Крускала.");
                 break;
             case IDEAL:
-                IdealGenerator idealgenerator = new IdealGenerator();
-                maze = idealgenerator.generate(height, width);
+                generator = new IdealGenerator();
+                maze = generator.generate(height, width);
                 System.out.println("Лабиринт сгенерирован с использованием идеального алгоритма.");
                 break;
             default:
@@ -55,15 +56,17 @@ public class Main {
         int choiceSolver = InputValidator.validateSolverChoice(scanner, System.out);
 
         AlgoritmsSolver algoritmsSolver = AlgoritmsSolver.fromValue(choiceSolver);
+
         List<Coordinate> path;
+        Solver solver;
         switch (algoritmsSolver) {
             case BFS:
-                BFSSolver bfsSolver = new BFSSolver();
-                path = bfsSolver.solve(maze, startPoint, endPoint);
+                solver = new BFSSolver();
+                path = solver.solve(maze, startPoint, endPoint);
                 break;
             case DFS:
-                DFSSolver dfsSolver = new DFSSolver();
-                path = dfsSolver.solve(maze, startPoint, endPoint);
+                solver = new DFSSolver();
+                path = solver.solve(maze, startPoint, endPoint);
                 break;
             default:
                 throw new IllegalStateException(ERRORUNCKNOWN + algoritm);

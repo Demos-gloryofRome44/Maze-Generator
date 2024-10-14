@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class IdealGenerator {
+public class IdealGenerator implements Generator {
     public Maze generate(int height, int width) {
         Maze maze = new Maze(height, width);
 
