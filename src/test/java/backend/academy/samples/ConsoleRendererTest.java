@@ -18,11 +18,11 @@ public class ConsoleRendererTest {
         ConsoleRenderer renderer = new ConsoleRenderer();
 
         String expectedOutput =
-            "█ █ █\n"
-                + "█ █ █\n"
-                + "█ █ █\n"
-                + "█ █ █\n"
-                + "█ █ █\n";
+            "⬛⬜⬛⬜⬛\n"
+                + "⬛⬜⬛⬜⬛\n"
+                + "⬛⬜⬛⬜⬛\n"
+                + "⬛⬜⬛⬜⬛\n"
+                + "⬛⬜⬛⬜⬛\n";
 
         String actualOutput = renderer.render(maze);
         assertEquals(expectedOutput, actualOutput, "The rendered maze should match the expected output.");
@@ -39,11 +39,11 @@ public class ConsoleRendererTest {
         Coordinate end = new Coordinate(3, 1);
 
         String expectedOutput =
-            "█ █ █\n"
-                + "█B█ █\n"
-                + "█*█ █\n"
-                + "█*█ █\n"
-                + "█A█ █\n";
+            "⬛⬜⬛⬜⬛\n"
+                + "⬛🅱️⬛⬜⬛\n"
+                + "⬛🟩⬛⬜⬛\n"
+                + "⬛🟩⬛⬜⬛\n"
+                + "⬛🅰️⬛⬜⬛\n";
 
         String actualOutput = renderer.renderWithPath(maze, path, start, end);
         assertEquals(expectedOutput, actualOutput, "The rendered maze with path should match the expected output.");
