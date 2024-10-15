@@ -5,11 +5,13 @@ import java.util.List;
 public class ConsoleRenderer {
     public String render(Maze maze) {
         StringBuilder sb = new StringBuilder();
+
         for (int row = maze.getHeight() - 1; row >= 0; row--) {
+            sb.append(row).append(' ');
             for (int col = 0; col < maze.getWidth(); col++) {
-                sb.append(maze.getGrid()[row][col].getType() == Cell.Type.WALL ? "⬛" : "⬜");
+                sb.append(maze.getGrid()[row][col].getType() == Cell.Type.WALL ? "⬛️" : "⬜");
             }
-            sb.append("\n");
+            sb.append('\n');
         }
         return sb.toString();
     }
@@ -34,7 +36,8 @@ public class ConsoleRenderer {
         }
 
         for (int row = maze.getHeight() - 1; row >= 0; row--) {
-            sb.append(String.join("", visualMaze[row])).append("\n");
+            sb.append(row).append(' ');
+            sb.append(String.join("", visualMaze[row])).append('\n');
         }
 
         return sb.toString();
