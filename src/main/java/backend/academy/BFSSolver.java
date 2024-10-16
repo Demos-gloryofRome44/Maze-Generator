@@ -22,8 +22,8 @@ public class BFSSolver implements Solver {
      */
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate newStart, Coordinate newEnd) {
-        if (maze == null || newStart == null || newEnd == null) {
-            throw new IllegalArgumentException("Maze, start, and end cannot be null.");
+        if (maze == null) {
+            throw new IllegalArgumentException("Maze cannot be null.");
         }
 
         Queue<Coordinate> queue = new LinkedList<>();
