@@ -1,6 +1,7 @@
 package backend.academy;
 
 import java.io.PrintStream;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import lombok.experimental.UtilityClass;
@@ -62,25 +63,36 @@ public class Main {
             AlgoritmsSolver algoritmsSolver = AlgoritmsSolver.fromValue(choiceSolver);
 
             List<Coordinate> path;
+            List<Coordinate> path2;
             Solver solver;
             switch (algoritmsSolver) {
                 case BFS:
-                    solver = new BFSSolver();
+                    solver = new BFSSolverNormal();
                     path = solver.solve(maze, startPoint, endPoint);
+
+                    solver = new BFSSolver();
+                    path2 = solver.solve(maze, startPoint, endPoint);
                     break;
                 case DFS:
                     solver = new DFSSolver();
                     path = solver.solve(maze, startPoint, endPoint);
+                    path2 = Collections.emptyList();
                     break;
                 default:
                     throw new IllegalStateException(ERRORUNCKNOWN + algoritm);
             }
 
             if (!path.isEmpty()) {
-                out.println("Найденный путь:");
+                out.println("Найденный путь без учета местности:");
                 out.println(renderer.renderWithPath(maze, path, startPoint, endPoint));
             } else {
                 out.println("Путь не найден.");
+            }
+            if (!path2.isEmpty()) {
+                out.println("Найденный путь с учетом местности:");
+                out.println(renderer.renderWithPath(maze, path2, startPoint, endPoint));
+            } else {
+                out.println("Путь с учетом местности не найден.");
             }
 
             out.print("Хотите сгенерировать еще один лабиринт? ([Д]а/[Н]ет): ");
