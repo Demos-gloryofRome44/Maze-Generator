@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 public class IdealGenerator implements Generator {
+    private static final double COIN_DENSITY = 0.1;
+    private static final double SAND_DENSITY = 0.05;
 
     /**
      * Генерирует идеальный лабиринт заданных размеров.
@@ -38,9 +40,9 @@ public class IdealGenerator implements Generator {
         for (int r = 0; r < height; r++) {
             for (int c = 0; c < width; c++) {
                 if (maze.getGrid()[r][c].getType() == Cell.Type.PASSAGE) {
-                    if (random.nextDouble() < 0.1) {
+                    if (random.nextDouble() < COIN_DENSITY) {
                         maze.setCell(r, c, Cell.Type.COIN);
-                    } else if (random.nextDouble() < 0.1) {
+                    } else if (random.nextDouble() < SAND_DENSITY) {
                         maze.setCell(r, c, Cell.Type.SAND);
                     }
                 }
