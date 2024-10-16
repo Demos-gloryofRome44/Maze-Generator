@@ -1,28 +1,29 @@
 package backend.academy;
 
+import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 import lombok.experimental.UtilityClass;
 
 
 @UtilityClass
-@SuppressWarnings("all")
 public class Main {
     private static final String ERRORUNCKNOWN = "Неизвестный алгоритм: ";
 
     public static void main(String[] args) {
-        //Scanner scanner = new Scanner(System.in);
+        PrintStream out = System.out;
 
-        System.out.println("Учтите, прежде чем генерировать лабиринт, что его размер подходит под вашу консоль\n"
+        out.println("Учтите, прежде чем генерировать лабиринт, что его размер подходит под вашу консоль\n"
             + "рекомендованное максимально число на высоту - 35 и ширину - 170\n"
             + "Условные обозначение ⬛ - стена ⬜ - проход 🟩 - путь от двух точек");
 
         while (true) {
+            out.println("----- Запуск программы -----");
             Scanner scanner = new Scanner(System.in);
-            int height = InputValidator.validateHeight(scanner, System.out);
-            int width = InputValidator.validateWidth(scanner, System.out);
+            int height = InputValidator.validateHeight(scanner, out);
+            int width = InputValidator.validateWidth(scanner, out);
 
-            int choiceGenerator = InputValidator.validateAlgoritmGeneratorChoice(scanner, System.out);
+            int choiceGenerator = InputValidator.validateAlgoritmGeneratorChoice(scanner, out);
             AlgoritmsGenerator algoritm = AlgoritmsGenerator.fromValue(choiceGenerator);
 
             Maze maze;
@@ -31,32 +32,32 @@ public class Main {
                 case KRUSKAL:
                     generator = new KruskalGenerator();
                     maze = generator.generate(height, width);
-                    System.out.println("Лабиринт сгенерирован с использованием алгоритма Крускала.");
+                    out.println("Лабиринт сгенерирован с использованием алгоритма Крускала.");
                     break;
                 case IDEAL:
                     generator = new IdealGenerator();
                     maze = generator.generate(height, width);
-                    System.out.println("Лабиринт сгенерирован с использованием идеального алгоритма.");
+                    out.println("Лабиринт сгенерирован с использованием идеального алгоритма.");
                     break;
                 default:
                     throw new IllegalStateException(ERRORUNCKNOWN + algoritm);
             }
 
-            System.out.println("Сгенерированный лабиринт:");
+            out.println("Сгенерированный лабиринт:");
             ConsoleRenderer renderer = new ConsoleRenderer();
-            System.out.println(renderer.render(maze));
+            out.println(renderer.render(maze));
 
             WallHandler wallHandler = new WallHandler(maze);
 
             Coordinate startPoint = InputValidator.validateCoordinate(scanner, height, width,
-                "начальную", "A", System.out);
-            startPoint = wallHandler.checkAndModifyCellType(startPoint, "A");
+                "начальную", "A", out);
+            startPoint = wallHandler.checkAndModifyCellType(startPoint, "A", out);
 
             Coordinate endPoint = InputValidator.validateCoordinate(scanner, height, width,
-                "конечную", "B", System.out);
-            endPoint = wallHandler.checkAndModifyCellType(endPoint, "B");
+                "конечную", "B", out);
+            endPoint = wallHandler.checkAndModifyCellType(endPoint, "B", out);
 
-            int choiceSolver = InputValidator.validateSolverChoice(scanner, System.out);
+            int choiceSolver = InputValidator.validateSolverChoice(scanner, out);
 
             AlgoritmsSolver algoritmsSolver = AlgoritmsSolver.fromValue(choiceSolver);
 
@@ -76,17 +77,17 @@ public class Main {
             }
 
             if (!path.isEmpty()) {
-                System.out.println("Найденный путь:");
-                System.out.println(renderer.renderWithPath(maze, path, startPoint, endPoint));
+                out.println("Найденный путь:");
+                out.println(renderer.renderWithPath(maze, path, startPoint, endPoint));
             } else {
-                System.out.println("Путь не найден.");
+                out.println("Путь не найден.");
             }
 
-            System.out.print("Хотите сгенерировать еще один лабиринт? ([Д]а/[Н]ет): ");
+            out.print("Хотите сгенерировать еще один лабиринт? ([Д]а/[Н]ет): ");
             Scanner scanner1 = new Scanner(System.in);
             String answer = scanner1.nextLine().trim().toLowerCase();
             if (!answer.equalsIgnoreCase("Д") && !answer.equalsIgnoreCase("Да")) {
-                System.out.println("Спасибо, что восполользовались генератором лабиринтов ;)");
+                out.println("Спасибо, что восполользовались генератором лабиринтов ;)");
                 scanner1.close();
                 scanner.close();
                 break;

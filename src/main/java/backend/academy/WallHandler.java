@@ -1,25 +1,26 @@
 package backend.academy;
 
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class WallHandler {
     private final Maze maze;
     private final Scanner scanner;
+    private static final String SELECTEDPOINTMESSAGE = "Вы выбрали за точку ";
 
     public WallHandler(Maze maze) {
         this.maze = maze;
         this.scanner = new Scanner(System.in);
     }
 
-    @SuppressWarnings("all")
-    public Coordinate checkAndModifyCellType(Coordinate coordinate, String pointLabel) {
+    public Coordinate checkAndModifyCellType(Coordinate coordinate, String pointLabel, PrintStream out) {
         Coordinate coord = coordinate;
 
         while (true) {
             if (maze.getCell(coord.row(), coord.col()).getType() == Cell.Type.PASSAGE) {
                 break;
             }
-            System.out.print("Вы выбрали за точку " + pointLabel + " стену. Вы хотите сделать её проходом? [Д]а/[Н]ет? ");
+            out.print(SELECTEDPOINTMESSAGE + pointLabel + " стену. Вы хотите сделать её проходом? [Д]а/[Н]ет? ");
             String response = scanner.nextLine();
 
             if (response.equalsIgnoreCase("Д") || response.equalsIgnoreCase("Да")) {
@@ -31,7 +32,8 @@ public class WallHandler {
                         pointLabel.equals("A") ? "начальную" : "конечную", pointLabel, System.out);
 
                     if (maze.getCell(coord.row(), coord.col()).getType() == Cell.Type.WALL) {
-                        System.out.println("Вы выбрали за точку " + pointLabel + " стену. Пожалуйста, выберите другую координату.");
+                        out.println(SELECTEDPOINTMESSAGE + pointLabel + " стену. "
+                            + "Пожалуйста, выберите другую координату.");
                     } else {
                         return coord;
                     }
