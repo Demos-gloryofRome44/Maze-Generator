@@ -12,21 +12,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ConsoleRendererTest {
 
     // Тест на вывод в консоли лабиринта не проходит с инексами ряда, без них проходил
-    /*@Test
+    @Test
     public void testRenderMaze() {
         Maze maze = createSimpleMaze();
         ConsoleRenderer renderer = new ConsoleRenderer();
 
         String expectedOutput =
-            " 4 ⬛⬜⬛⬜⬛\n"
-                + " 3 ⬛⬜⬛⬜⬛\n"
-                + " 2 ⬛⬜⬛⬜⬛\n"
-                + " 1 ⬛⬜⬛⬜⬛\n"
-                + " 0 ⬛⬜⬛⬜⬛\n";
+            "4 ⬛️⬜⬛️⬜⬛️\n"
+        + "3 ⬛️⬜⬛️⬜⬛️\n"
+        + "2 ⬛️⬜⬛️⬜⬛️\n"
+        + "1 ⬛️⬜⬛️⬜⬛️\n"
+        + "0 ⬛️⬜⬛️⬜⬛️\n";
 
         String actualOutput = renderer.render(maze);
         assertEquals(expectedOutput, actualOutput, "The rendered maze should match the expected output.");
-    }*/
+    }
 
     // Тест на вывод лабирнта с правильным путем между двумя точками лабиринта в консоли
     @Test
