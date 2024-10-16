@@ -1,15 +1,26 @@
 package backend.academy;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ConsoleRenderer {
+    private static final Map<Cell.Type, String> CELLS = new HashMap<>();
+
+    static {
+        CELLS.put(Cell.Type.WALL, "⬛");
+        CELLS.put(Cell.Type.PASSAGE, "⬜");
+        CELLS.put(Cell.Type.COIN, "🪙");
+        CELLS.put(Cell.Type.SAND, "🟧");
+    }
+
     public String render(Maze maze) {
         StringBuilder sb = new StringBuilder();
 
         for (int row = maze.getHeight() - 1; row >= 0; row--) {
             sb.append(row).append(' ');
             for (int col = 0; col < maze.getWidth(); col++) {
-                sb.append(maze.getGrid()[row][col].getType() == Cell.Type.WALL ? "⬛️" : "⬜");
+                sb.append(renderCell(maze.getGrid()[row][col]));
             }
             sb.append('\n');
         }
@@ -22,7 +33,7 @@ public class ConsoleRenderer {
 
         for (int row = 0; row < maze.getHeight(); row++) {
             for (int col = 0; col < maze.getWidth(); col++) {
-                visualMaze[row][col] = maze.getGrid()[row][col].getType() == Cell.Type.WALL ? "⬛" : "⬜";
+                visualMaze[row][col] = renderCell(maze.getGrid()[row][col]);
             }
         }
 
@@ -41,5 +52,9 @@ public class ConsoleRenderer {
         }
 
         return sb.toString();
+    }
+
+    private String renderCell(Cell cell) {
+        return CELLS.getOrDefault(cell.getType(), "⬜");
     }
 }
