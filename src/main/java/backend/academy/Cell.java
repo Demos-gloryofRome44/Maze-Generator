@@ -5,7 +5,7 @@ public class Cell {
     private final int col;
     private Type type;
 
-    public enum Type { WALL, PASSAGE }
+    public enum Type { WALL, PASSAGE, COIN, SAND }
 
     public Cell(int row, int col, Type type) {
         this.row = row;
