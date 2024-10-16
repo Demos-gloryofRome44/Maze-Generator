@@ -42,7 +42,13 @@ public class ConsoleRenderer {
 
         for (Coordinate coordinate : path) {
             if (!(coordinate.equals(start) || coordinate.equals(end))) {
-                visualMaze[coordinate.row()][coordinate.col()] = "🟩";
+                if (maze.getCell(coordinate.row(), coordinate.col()).getType() == Cell.Type.COIN) {
+                    visualMaze[coordinate.row()][coordinate.col()] = "🟢";
+                } else if (maze.getCell(coordinate.row(), coordinate.col()).getType() == Cell.Type.SAND) {
+                    visualMaze[coordinate.row()][coordinate.col()] = "🔶";
+                } else {
+                    visualMaze[coordinate.row()][coordinate.col()] = "🟩";
+                }
             }
         }
 
