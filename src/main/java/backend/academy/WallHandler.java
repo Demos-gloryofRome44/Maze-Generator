@@ -22,7 +22,7 @@ public class WallHandler {
             System.out.print("Вы выбрали за точку " + pointLabel + " стену. Вы хотите сделать её проходом? [Д]а/[Н]ет? ");
             String response = scanner.nextLine();
 
-            if (response.equalsIgnoreCase("Д")) {
+            if (response.equalsIgnoreCase("Д") || response.equalsIgnoreCase("Да")) {
                 maze.getCell(coord.row(), coord.col()).setType(Cell.Type.PASSAGE);
                 break;
             } else {
