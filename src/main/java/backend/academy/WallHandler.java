@@ -17,7 +17,7 @@ public class WallHandler {
         Coordinate coord = coordinate;
 
         while (true) {
-            if (maze.getCell(coord.row(), coord.col()).getType() == Cell.Type.PASSAGE) {
+            if (maze.getCell(coord.row(), coord.col()).getType() != Cell.Type.WALL) {
                 break;
             }
             out.print(SELECTEDPOINTMESSAGE + pointLabel + " стену. Вы хотите сделать её проходом? [Д]а/[Н]ет? ");
