@@ -35,6 +35,18 @@ public class IdealGenerator implements Generator {
             }
         }
 
+        for (int r = 0; r < height; r++) {
+            for (int c = 0; c < width; c++) {
+                if (maze.getGrid()[r][c].getType() == Cell.Type.PASSAGE) {
+                    if (random.nextDouble() < 0.1) {
+                        maze.setCell(r, c, Cell.Type.COIN);
+                    } else if (random.nextDouble() < 0.1) {
+                        maze.setCell(r, c, Cell.Type.SAND);
+                    }
+                }
+            }
+        }
+
         return maze;
     }
 

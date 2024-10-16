@@ -67,6 +67,7 @@ public class KruskalGenerator implements Generator {
                 }
             }
         }
+        generateSurfaces(cells);
 
         return new Maze(cells);
     }
@@ -111,6 +112,50 @@ public class KruskalGenerator implements Generator {
             Coordinate root2 = find(node2);
             if (!root1.equals(root2)) {
                 parent.put(root1, root2);
+            }
+        }
+    }
+
+    /**
+     * Генерирует дополнительные поверхности (монеты и песок) в лабиринте.
+     *
+     * @param cells Двумерный массив клеток лабиринта.
+     */
+    private void generateSurfaces(Cell[][] cells) {
+        Random random = new Random();
+        int height = cells.length;
+        int width = cells[0].length;
+
+        int numberOfCoins = (height * width) / 10;
+        int numberOfSand = (height * width) / 20;
+
+        for (int i = 0; i < numberOfCoins; i++) {
+            placeRandomSurface(cells, Cell.Type.COIN);
+        }
+
+        for (int i = 0; i < numberOfSand; i++) {
+            placeRandomSurface(cells, Cell.Type.SAND);
+        }
+    }
+
+    /**
+     * Помещает случайную поверхность в лабиринт.
+     *
+     * @param cells Двумерный массив клеток лабиринта.
+     * @param type Тип поверхности для размещения.
+     */
+    private void placeRandomSurface(Cell[][] cells, Cell.Type type) {
+        Random random = new Random();
+        int height = cells.length;
+        int width = cells[0].length;
+
+        while (true) {
+            int row = random.nextInt(height - 2) + 1;
+            int col = random.nextInt(width - 2) + 1;
+
+            if (cells[row][col].getType() == Cell.Type.PASSAGE) {
+                cells[row][col].setType(type);
+                break;
             }
         }
     }
