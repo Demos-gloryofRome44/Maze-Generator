@@ -9,9 +9,9 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 public class BFSSolver implements Solver {
-    private static final int WEIGHT_COIN = 1;
+    private static final int WEIGHT_COIN = 0;
     private static final int WEIGHT_PASSAGE = 2;
-    private static final int WEIGHT_SAND = 3;
+    private static final int WEIGHT_SAND = 4;
 
     /**
      * Находит путь в лабиринте от начальной до конечной точки.
