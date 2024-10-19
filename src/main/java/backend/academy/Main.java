@@ -1,5 +1,19 @@
 package backend.academy;
 
+import backend.academy.console.ConsoleRenderer;
+import backend.academy.enums.AlgoritmsGenerator;
+import backend.academy.enums.AlgoritmsSolver;
+import backend.academy.generator.Generator;
+import backend.academy.generator.IdealGenerator;
+import backend.academy.generator.KruskalGenerator;
+import backend.academy.solver.BFSSolver;
+import backend.academy.solver.BFSSolverNormal;
+import backend.academy.solver.DFSSolver;
+import backend.academy.solver.Solver;
+import backend.academy.substance.Coordinate;
+import backend.academy.substance.Maze;
+import backend.academy.validator.InputValidator;
+import backend.academy.validator.WallHandler;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;

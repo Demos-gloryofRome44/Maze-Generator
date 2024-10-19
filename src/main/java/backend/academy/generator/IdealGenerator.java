@@ -1,5 +1,7 @@
-package backend.academy;
+package backend.academy.generator;
 
+import backend.academy.substance.Cell;
+import backend.academy.substance.Maze;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package backend.academy;
+package backend.academy.substance;
 
 public class Maze {
     private final int height;

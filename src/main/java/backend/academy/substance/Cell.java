@@ -1,4 +1,4 @@
-package backend.academy;
+package backend.academy.substance;
 
 public class Cell {
     private final int row;

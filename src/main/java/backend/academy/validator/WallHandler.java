@@ -1,5 +1,8 @@
-package backend.academy;
+package backend.academy.validator;
 
+import backend.academy.substance.Cell;
+import backend.academy.substance.Coordinate;
+import backend.academy.substance.Maze;
 import java.io.PrintStream;
 import java.util.Scanner;
 

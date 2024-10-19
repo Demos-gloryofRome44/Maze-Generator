@@ -1,5 +1,8 @@
-package backend.academy;
+package backend.academy.console;
 
+import backend.academy.substance.Cell;
+import backend.academy.substance.Coordinate;
+import backend.academy.substance.Maze;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

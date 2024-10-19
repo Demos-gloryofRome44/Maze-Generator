@@ -1,7 +1,7 @@
 package backend.academy.samples;
 
-import backend.academy.Coordinate;
-import backend.academy.InputValidator;
+import backend.academy.substance.Coordinate;
+import backend.academy.validator.InputValidator;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

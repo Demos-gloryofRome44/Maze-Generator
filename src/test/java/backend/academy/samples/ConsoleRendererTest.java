@@ -1,9 +1,9 @@
 package backend.academy.samples;
 
-import backend.academy.Cell;
-import backend.academy.ConsoleRenderer;
-import backend.academy.Coordinate;
-import backend.academy.Maze;
+import backend.academy.substance.Cell;
+import backend.academy.console.ConsoleRenderer;
+import backend.academy.substance.Coordinate;
+import backend.academy.substance.Maze;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

@@ -1,5 +1,8 @@
-package backend.academy;
+package backend.academy.generator;
 
+import backend.academy.substance.Cell;
+import backend.academy.substance.Coordinate;
+import backend.academy.substance.Maze;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

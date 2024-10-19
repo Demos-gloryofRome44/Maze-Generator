@@ -1,12 +1,12 @@
-package backend.academy;
+package backend.academy.enums;
 
-public enum AlgoritmsGenerator {
-    IDEAL(1),
-    KRUSKAL(2);
+public enum AlgoritmsSolver {
+    BFS(1),
+    DFS(2);
 
     private final int value;
 
-    AlgoritmsGenerator(int value) {
+    AlgoritmsSolver(int value) {
         this.value = value;
     }
 
@@ -14,8 +14,8 @@ public enum AlgoritmsGenerator {
         return value;
     }
 
-    public static AlgoritmsGenerator fromValue(int value) {
-        for (AlgoritmsGenerator topic : AlgoritmsGenerator.values()) {
+    public static AlgoritmsSolver fromValue(int value) {
+        for (AlgoritmsSolver topic : AlgoritmsSolver.values()) {
             if (topic.getValue() == value) {
                 return topic;
             }

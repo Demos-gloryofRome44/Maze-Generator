@@ -1,5 +1,8 @@
-package backend.academy;
+package backend.academy.validator;
 
+import backend.academy.enums.AlgoritmsGenerator;
+import backend.academy.enums.AlgoritmsSolver;
+import backend.academy.substance.Coordinate;
 import java.io.PrintStream;
 import java.util.Scanner;
 

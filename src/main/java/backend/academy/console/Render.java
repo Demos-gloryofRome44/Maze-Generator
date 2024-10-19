@@ -1,5 +1,7 @@
-package backend.academy;
+package backend.academy.console;
 
+import backend.academy.substance.Coordinate;
+import backend.academy.substance.Maze;
 import java.util.List;
 
 public interface Render {
