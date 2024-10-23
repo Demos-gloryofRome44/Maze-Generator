@@ -23,7 +23,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class Main {
-    private static final String ERRORUNCKNOWN = "Неизвестный алгоритм: ";
+    private static final String ERROR_UNCKNOWN = "Неизвестный алгоритм: ";
 
     public static void main(String[] args) {
         PrintStream out = System.out;
@@ -60,7 +60,7 @@ public class Main {
                     out.println("Лабиринт сгенерирован с использованием идеального алгоритма.");
                     break;
                 default:
-                    throw new IllegalStateException(ERRORUNCKNOWN + algoritm);
+                    throw new IllegalStateException(ERROR_UNCKNOWN + algoritm);
             }
 
             out.println("Сгенерированный лабиринт:");
@@ -98,7 +98,7 @@ public class Main {
                     path2 = Collections.emptyList();
                     break;
                 default:
-                    throw new IllegalStateException(ERRORUNCKNOWN + algoritm);
+                    throw new IllegalStateException(ERROR_UNCKNOWN + algoritm);
             }
 
             if (!path.isEmpty()) {

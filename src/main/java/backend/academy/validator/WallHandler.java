@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class WallHandler {
     private final Maze maze;
     private final Scanner scanner;
-    private static final String SELECTEDPOINTMESSAGE = "Вы выбрали за точку ";
+    private static final String SELECTED_POINT_MESSAGE = "Вы выбрали за точку ";
 
     public WallHandler(Maze maze) {
         this.maze = maze;
@@ -23,7 +23,7 @@ public class WallHandler {
             if (maze.getCell(coord.row(), coord.col()).getType() != Cell.Type.WALL) {
                 break;
             }
-            out.print(SELECTEDPOINTMESSAGE + pointLabel + " стену. Вы хотите сделать её проходом? [Д]а/[Н]ет? ");
+            out.print(SELECTED_POINT_MESSAGE + pointLabel + " стену. Вы хотите сделать её проходом? [Д]а/[Н]ет? ");
             String response = scanner.nextLine();
 
             if (response.equalsIgnoreCase("Д") || response.equalsIgnoreCase("Да")) {
@@ -35,7 +35,7 @@ public class WallHandler {
                         pointLabel.equals("A") ? "начальную" : "конечную", pointLabel, System.out);
 
                     if (maze.getCell(coord.row(), coord.col()).getType() == Cell.Type.WALL) {
-                        out.println(SELECTEDPOINTMESSAGE + pointLabel + " стену. "
+                        out.println(SELECTED_POINT_MESSAGE + pointLabel + " стену. "
                             + "Пожалуйста, выберите другую координату.");
                     } else {
                         return coord;

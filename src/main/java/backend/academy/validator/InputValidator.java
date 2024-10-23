@@ -7,12 +7,12 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class InputValidator {
-    private static final int HEIGHTWEIGHT = 5;
-    private static final int MAXHEIGHT = 35;
-    private  static final int MAXWIDTH = 170;
+    private static final int HEIGHT_WEIGHT = 5;
+    private static final int MAX_HEIGHT = 35;
+    private  static final int MAX_WIDTH = 170;
 
-    private static final String ERRORMESSAGEINT = "Некорректный ввод. Пожалуйста, введите целое число.";
-    private static final String ERRORMESSAGECHOUSE = "Некорректный выбор. Пожалуйста, выберите 1 или 2.";
+    private static final String ERROR_MESSAGE_INT = "Некорректный ввод. Пожалуйста, введите целое число.";
+    private static final String ERROR_MESSAGE_CHOISE = "Некорректный выбор. Пожалуйста, выберите 1 или 2.";
 
     private InputValidator() {
         throw new UnsupportedOperationException("Утилитарный класс не может быть инстанцирован");
@@ -26,13 +26,13 @@ public class InputValidator {
 
             try {
                 height = Integer.parseInt(input);
-                if (height >= HEIGHTWEIGHT && height <= MAXHEIGHT) {
+                if (height >= HEIGHT_WEIGHT && height <= MAX_HEIGHT) {
                     return height;
                 } else {
                     out.println("Некорректное значение. Пожалуйста, введите число от 5 до 35.");
                 }
             } catch (NumberFormatException e) {
-                out.println(ERRORMESSAGEINT);
+                out.println(ERROR_MESSAGE_INT);
             }
         }
     }
@@ -44,13 +44,13 @@ public class InputValidator {
             String input = scanner.nextLine().trim();
             try {
                 width = Integer.parseInt(input);
-                if (width >= HEIGHTWEIGHT && width <= MAXWIDTH) {
+                if (width >= HEIGHT_WEIGHT && width <= MAX_WIDTH) {
                     return width;
                 } else {
                     out.println("Некорректное значение. Пожалуйста, введите число от 5 до 170.");
                 }
             } catch (NumberFormatException e) {
-                out.println(ERRORMESSAGEINT);
+                out.println(ERROR_MESSAGE_INT);
             }
         }
     }
@@ -88,10 +88,10 @@ public class InputValidator {
                 if (AlgoritmsGenerator.KRUSKAL.getValue() == choice || AlgoritmsGenerator.IDEAL.getValue() == choice) {
                     return choice;
                 } else {
-                    out.println(ERRORMESSAGECHOUSE);
+                    out.println(ERROR_MESSAGE_CHOISE);
                 }
             } else {
-                out.println(ERRORMESSAGEINT);
+                out.println(ERROR_MESSAGE_INT);
                 scanner.next();
             }
         }
@@ -106,10 +106,10 @@ public class InputValidator {
                 if (AlgoritmsSolver.BFS.getValue() == choice  || AlgoritmsSolver.DFS.getValue() == choice) {
                     return choice;
                 } else {
-                    out.println(ERRORMESSAGECHOUSE);
+                    out.println(ERROR_MESSAGE_CHOISE);
                 }
             } else {
-                out.println(ERRORMESSAGEINT);
+                out.println(ERROR_MESSAGE_INT);
                 scanner.next();
             }
         }
